@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+</head>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.countdown {
+    text-align: center;
+}
+
+.time {
+    font-size: 3rem;
+    margin: 0 10px;
+}
+
+#timer {
+    display: flex;
+    justify-content: center;
+}
+</style>
+<body>
+    <div class="countdown">
+        <h1>Countdown Timer</h1>
+        <div id="timer">
+            <div class="time" id="days">00</div>
+            <div class="time" id="hours">00</div>
+            <div class="time" id="minutes">00</div>
+            <div class="time" id="seconds">00</div>
+        </div>
+        <p id="message"></p>
+    </div>
+
+    <script> var countDownDate = new Date("Nov 28, 2024 23:00:00").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+    
+    // Get today's date and time
+    var now = new Date().getTime();
+    
+    // Find the distance between now and the count down date
+    var distance = countDownDate - now;
+
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Display the result in the elements with respective IDs
+    document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
+    document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
+    document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
+    document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
+
+    // If the countdown is finished, write some text
+    if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("message").innerHTML = "EXPIRED";
+        document.getElementById("timer").style.display = "none"; // Hide timer
+    }
+}, 1000);</script>
+</body>
+</html>
